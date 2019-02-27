@@ -1,13 +1,16 @@
 #!/bin/bash
 
-curl -L https://github.com/discourse-org/team-ssh-access/raw/master/update-users -o /etc/cron.hourly/update-users.new
+touch /etc/cron.d/update-users
+echo '*/15 *  *  *  * root /usr/local/bin/update-users' > /etc/cron.d/update-users
 
-if [[ $(wc -l </etc/cron.hourly/update-users.new) -ge 2 ]]
+curl -L https://github.com/discourse-org/team-ssh-access/raw/master/update-users -o /usr/local/bin/update-users.new
+
+if [[ $(wc -l </usr/local/bin/update-users.new) -ge 2 ]]
 then
-    mv /etc/cron.hourly/update-users.new /etc/cron.hourly/update-users
+    mv /usr/local/bin/update-users.new /usr/local/bin/update-users
 fi
 
-chmod 0755 /etc/cron.hourly/update-users
-/etc/cron.hourly/update-users
+chmod 0755 /usr/local/bin/update-users
+/usr/local/bin/update-users
 
 echo Done!
