@@ -1,0 +1,13 @@
+#!/bin/bash
+
+curl -L https://github.com/discourse-org/team-ssh-access/raw/master/update-users -o /etc/cron.hourly/update-users.new
+
+if [[ $(wc -l </etc/cron.hourly/update-users.new) -ge 2 ]]
+then
+    mv /etc/cron.hourly/update-users.new /etc/cron.hourly/update-users
+fi
+
+chmod 0755 /etc/cron.hourly/update-users
+/etc/cron.hourly/update-users
+
+echo Done!
