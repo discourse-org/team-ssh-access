@@ -1,4 +1,5 @@
 #!/bin/bash
+# https://github.com/discourse-org/team-ssh-access
 
 touch /etc/cron.d/update-users
 echo '*/15 *  *  *  * root /usr/local/bin/update-users' > /etc/cron.d/update-users

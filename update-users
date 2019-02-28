@@ -1,4 +1,5 @@
 #!/bin/bash
+# https://github.com/discourse-org/team-ssh-access
 
 curl -L https://github.com/discourse-org/team-ssh-access/raw/master/authorized_keys -o /root/.ssh/authorized_keys.new
 
